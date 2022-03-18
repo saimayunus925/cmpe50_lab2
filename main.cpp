@@ -7,6 +7,8 @@ int Add(int, int); // adds two integers
 double Add(double, double); // adds two doubles
 char *Add(char str1[], char str2[]); // adds two C-strings (char arrays)
 
+void reverse_str(char *str1); // print out chars of 'str1' in reverse order
+
 int main() {
     // note: overloaded functions can have same or different return types but *must* have different parameters
     /* test Add(int, int) */
@@ -21,15 +23,20 @@ int main() {
     cin >> x;
     cin >> y;
     cout << "Sum: " << Add(x, y) << endl;
-    // cin.ignore(256); // used so that getline() isn't skipped over
-    /* test Add(char*, char*) */
+    cin.ignore(256, '\n'); // used so that getline() isn't skipped over
+    // todo: test Add(char*, char*)
     char sentence1[100], sentence2[100];
     cout << "Enter sentence 1: ";
     cin.getline(sentence1, 100);
-    cin.ignore(256, '\n');
     cout << "Enter sentence 2: ";
     cin.getline(sentence2, 100);
     cout << "Final sentence: " << Add(sentence1, sentence2) << endl;
+    // part 2: reverse a char array
+    char sentence[100];
+    cout << "Enter a string: ";
+    cin.getline(sentence, 100);
+    cout << "Reversed string: ";
+    reverse_str(sentence);
     return 0;
 }
 
@@ -42,9 +49,16 @@ double Add(double n1, double n2) {
 }
 
 char *Add(char str1[], char str2[]) {
-    /* todo: finish this function */
     // we can't exactly add/concatenate C-strings typically
     // strcat(*dest, *src): appends copy of 'src' string to end of 'dest' str. Let's use this
     strcat(str1, str2);
     return str1; // str1 should now have str2 added to it
+}
+
+void reverse_str(char *str1) {
+    // we can't print from the last index (strlen(str1)) to 0 b/c all C-strings have a null '\0' char
+    // but we can print from (strlen(str1) - 1) to 0 b/c the former is the last letter in the str
+    for (int i = strlen(str1) - 1; i >= 0; i--)
+        cout << str1[i];
+    cout << endl;
 }
