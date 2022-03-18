@@ -24,7 +24,7 @@ int main() {
     cin >> y;
     cout << "Sum: " << Add(x, y) << endl;
     cin.ignore(256, '\n'); // used so that getline() isn't skipped over
-    // todo: test Add(char*, char*)
+    /* test Add(char*, char*) */
     char sentence1[100], sentence2[100];
     cout << "Enter sentence 1: ";
     cin.getline(sentence1, 100);
